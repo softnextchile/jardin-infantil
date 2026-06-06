@@ -119,66 +119,144 @@
             transition: 0.3s;
         }
 
-        /* Hero Section */
+        /* Hero Section with Slider */
         .hero {
             min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            background: var(--text-dark);
+        }
+
+        .hero-slider {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .hero-slides {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--soft-yellow) 0%, var(--light-green) 50%, var(--soft-pink) 100%);
-            padding: 120px 2rem 60px;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(124, 179, 66, 0.85) 0%, rgba(168, 213, 129, 0.7) 50%, rgba(248, 187, 217, 0.7) 100%);
+        }
+
+        .hero-slide-content {
+            position: relative;
+            z-index: 10;
             text-align: center;
-        }
-
-        .hero-content {
             max-width: 800px;
-        }
+            padding: 2rem;
+ }
 
-        .hero h1 {
+        .hero-slide-content h1 {
             font-size: 3rem;
-            color: var(--text-dark);
+            color: var(--white);
             margin-bottom: 1.5rem;
             line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: var(--text-light);
+        .hero-slide-content p {
+            font-size: 1.4rem;
+            color: var(--white);
             margin-bottom: 2rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-btn {
-            display: inline-block;
+        .hero-slider-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            z-index: 20;
+        }
+
+        .slider-prev, .slider-next {
+            background: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+        }
+
+        .slider-prev:hover, .slider-next:hover {
             background: var(--primary-green);
             color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.4);
         }
 
-        .hero-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.5);
-        }
-
-        .hero-image {
-            margin-top: 3rem;
+        .slider-dots {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .hero-image img {
-            width: 280px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: var(--white);
+            transform: scale(1.2);
+        }
+
+        .dot:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Responsive Hero */
+        @media (max-width: 768px) {
+            .hero-slide-content h1 {
+                font-size: 2rem;
+            }
+            .hero-slide-content p {
+                font-size: 1.1rem;
+            }
+            .hero-btn {
+                padding: 0.8rem 1.8rem;
+                font-size: 1rem;
+            }
         }
 
         /* About Section */
@@ -702,16 +780,48 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Slider -->
     <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Donde Cada Niño Descubre Su Mundo de Aprendizaje</h1>
-            <p>Brindamos Educación Parvularia de calidad en un ambiente seguro, cariñoso y estimulante. Donde los párvulos crecen felices y desarrollan todo su potencial.</p>
-            <a href="#contacto" class="hero-btn">Agenda una Visita</a>
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=280&h=200&fit=crop&q=80" alt="Niños jugando">
-                <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=280&h=200&fit=crop&q=80" alt="Aula de clases">
-                <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=280&h=200&fit=crop&q=80" alt="Actividad educativa">
+        <div class="hero-slider">
+            <div class="hero-slides">
+                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=1400&h=600&fit=crop&q=80');">
+                    <div class="hero-slide-content">
+                        <h1>Donde Cada Párvulo Descubre Su Mundo de Aprendizaje</h1>
+                        <p>Educación Parvularia de calidad en un ambiente seguro, cariñoso y estimulante</p>
+<a href="#programas" class="hero-btn">Conoce Nuestras Programas</a>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=1400&h=600&fit=crop&q=80');">
+                    <div class="hero-slide-content">
+                        <h1>Aprendizaje a Través del Juego</h1>
+                        <p>Metodología basada en las Bases Curriculares del MINEDUC para el desarrollo integral</p>
+                        <a href="#nosotros" class="hero-btn">Nuestra Filosofía</a>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=1400&h=600&fit=crop&q=80');">
+                    <div class="hero-slide-content">
+                        <h1>Ambiente Seguro y Amoroso</h1>
+                        <p>Profesionales capacitados que cuidan y estimulan a cada niño en su etapa de desarrollo</p>
+                        <a href="#contacto" class="hero-btn">Agenda una Visita</a>
+                    </div>
+                </div>
+                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=1400&h=600&fit=crop&q=80');">
+                    <div class="hero-slide-content">
+                        <h1>Familia y Comunidad</h1>
+                        <p>Trabajamos de la mano con las familias en cada paso del desarrollo de sus hijos</p>
+                        <a href="#actividades" class="hero-btn">Nuestras Actividades</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slider-nav">
+                <button class="slider-prev" onclick="changeSlide(-1)">&#10094;</button>
+                <div class="slider-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                </div>
+                <button class="slider-next" onclick="changeSlide(1)">&#10095;</button>
             </div>
         </div>
     </section>
@@ -983,6 +1093,41 @@
                 }
             });
         });
+
+        // Hero Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.hero-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index >= totalSlides) currentSlide = 0;
+            if (index < 0) currentSlide = totalSlides - 1;
+
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance slider every 5 seconds
+        setInterval(() => {
+            currentSlide++;
+            showSlide(currentSlide);
+        }, 5000);
     </script>
 </body>
 </html>
