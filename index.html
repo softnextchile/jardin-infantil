@@ -4,1130 +4,688 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jardín Infantil - Educación Parvularia de Calidad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#10B981',
+                        secondary: '#34D399',
+                        accent: '#FBBF24',
+                        warm: '#F97316',
+                        soft: '#FCE7F3',
+                        cream: '#FEF9E7',
+                        dark: '#1F2937',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        
+        .gradient-hero {
+            background: linear-gradient(135deg, #10B981 0%, #34D399 50%, #FCE7F3 100%);
         }
-
-        :root {
-            --primary-green: #7CB342;
-            --light-green: #AED581;
-            --soft-yellow: #FFE082;
-            --warm-orange: #FFB74D;
-            --soft-pink: #F8BBD9;
-            --light-blue: #81D4FA;
-            --cream: #FFF8E1;
-            --text-dark: #4E342E;
-            --text-light: #5D4037;
-            --white: #FFFFFF;
+        .gradient-text {
+            background: linear-gradient(135deg, #10B981, #F97316);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--cream);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Nunito', sans-serif;
-            font-weight: 700;
-        }
-
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--primary-green), var(--light-green));
-            padding: 1rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--white);
-            font-family: 'Nunito', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-        }
-
-        .logo-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--soft-yellow);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--white);
-            border-radius: 3px;
-            transition: 0.3s;
-        }
-
-        /* Hero Section with Slider */
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            overflow: hidden;
-            background: var(--text-dark);
-        }
-
-        .hero-slider {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-        }
-
-        .hero-slides {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hero-slide.active {
-            opacity: 1;
-        }
-
-        .hero-slide::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(124, 179, 66, 0.85) 0%, rgba(168, 213, 129, 0.7) 50%, rgba(248, 187, 217, 0.7) 100%);
-        }
-
-        .hero-slide-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-            max-width: 800px;
-            padding: 2rem;
- }
-
-        .hero-slide-content h1 {
-            font-size: 3rem;
-            color: var(--white);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-slide-content p {
-            font-size: 1.4rem;
-            color: var(--white);
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-        }
-
-        .hero-slider-nav {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 20;
-        }
-
-        .slider-prev, .slider-next {
-            background: var(--white);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-green);
-        }
-
-        .slider-prev:hover, .slider-next:hover {
-            background: var(--primary-green);
-            color: var(--white);
-        }
-
-        .slider-dots {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            cursor: pointer;
+        .card-hover {
             transition: all 0.3s ease;
         }
-
-        .dot.active {
-            background: var(--white);
-            transform: scale(1.2);
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.15);
         }
-
-        .dot:hover {
-            background: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Responsive Hero */
-        @media (max-width: 768px) {
-            .hero-slide-content h1 {
-                font-size: 2rem;
-            }
-            .hero-slide-content p {
-                font-size: 1.1rem;
-            }
-            .hero-btn {
-                padding: 0.8rem 1.8rem;
-                font-size: 1rem;
-            }
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 2rem;
-            background: var(--white);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-green);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-light);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-        }
-
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 1rem;
-            background: var(--cream);
-            border-radius: 15px;
-        }
-
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--light-green);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image img {
-            width: 100%;
+        .blob-1 {
+            position: absolute;
+            width: 400px;
             height: 400px;
-            object-fit: cover;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(251, 191, 36, 0.2);
+            border-radius: 50%;
+            filter: blur(80px);
+            top: -100px;
+            right: -100px;
         }
-
-        /* Programs Section */
-        .programs {
-            padding: 80px 2rem;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--white) 100%);
+        .blob-2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 50%;
+            filter: blur(80px);
+            bottom: -50px;
+            left: -50px;
         }
-
-        .programs-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+        .floating {
+            animation: floating 3s ease-in-out infinite;
         }
-
-        .program-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
         }
-
-        .program-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
         }
-
-        .program-card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        .program-card-content {
-            padding: 1.5rem;
-        }
-
-        .program-card h3 {
-            font-size: 1.3rem;
-            color: var(--primary-green);
-            margin-bottom: 0.5rem;
-        }
-
-        .program-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
-        .program-tag {
-            display: inline-block;
-            background: var(--soft-yellow);
-            color: var(--text-dark);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-top: 1rem;
-        }
-
-        /* Activities Section */
-        .activities {
-            padding: 80px 2rem;
-            background: var(--white);
-        }
-
-        .activities-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-        }
-
-        .activity-item {
-            position: relative;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .activity-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .activity-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .activity-overlay {
+        .wave {
             position: absolute;
             bottom: 0;
             left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-            padding: 1rem;
-            color: var(--white);
-        }
-
-        .activity-overlay h4 {
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .activity-overlay p {
-            font-size: 0.85rem;
-            opacity: 0.9;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 80px 2rem;
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--primary-green) 100%);
-        }
-
-        .contact .section-title {
-            color: var(--white);
-        }
-
-        .contact .section-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .contact-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .contact-info h3 {
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .contact-icon {
-            width: 35px;
-            height: 35px;
-            background: var(--cream);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-        }
-
-        .contact-form h3 {
-            font-size: 1.5rem;
-            color: var(--primary-green);
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
-        }
-
-        .form-group input,
-        .form-group textarea {
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: 2px solid var(--cream);
-            border-radius: 10px;
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-green);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: var(--primary-green);
-            color: var(--white);
-            padding: 1rem;
-            border: none;
-            border-radius: 10px;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 700;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: var(--light-green);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: var(--white);
-            padding: 3rem 2rem 1.5rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-about h4 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            color: var(--soft-yellow);
-        }
-
-        .footer-about p {
-            opacity: 0.8;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .footer-links h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            color: var(--soft-yellow);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-green);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            max-width: 1200px;
-            margin: 2rem auto 0;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--primary-green);
-                flex-direction: column;
-                padding: 1rem 2rem;
-                gap: 1rem;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .programs-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .activities-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-image img {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .programs-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .activities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-features {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 1rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .hero {
-                padding: 100px 1rem 40px;
-            }
-
-            .hero-btn {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
-
-            .contact-content {
-                padding: 2rem 1.5rem;
-            }
         }
     </style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">
-                <div class="logo-icon">🌱</div>
-                <span>Jardín Infantil</span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#programas">Programas</a></li>
-                <li><a href="#actividades">Actividades</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+<body class="bg-cream">
 
-    <!-- Hero Section with Slider -->
-    <section class="hero" id="inicio">
-        <div class="hero-slider">
-            <div class="hero-slides">
-                <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=1400&h=600&fit=crop&q=80');">
-                    <div class="hero-slide-content">
-                        <h1>Donde Cada Párvulo Descubre Su Mundo de Aprendizaje</h1>
-                        <p>Educación Parvularia de calidad en un ambiente seguro, cariñoso y estimulante</p>
-<a href="#programas" class="hero-btn">Conoce Nuestras Programas</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                        <span class="text-white text-xl md:text-2xl">🌱</span>
                     </div>
+                    <span class="text-xl md:text-2xl font-bold text-dark">Jardín Infantil</span>
                 </div>
-                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=1400&h=600&fit=crop&q=80');">
-                    <div class="hero-slide-content">
-                        <h1>Aprendizaje a Través del Juego</h1>
-                        <p>Metodología basada en las Bases Curriculares del MINEDUC para el desarrollo integral</p>
-                        <a href="#nosotros" class="hero-btn">Nuestra Filosofía</a>
-                    </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#inicio" class="text-dark hover:text-primary font-medium transition-colors">Inicio</a>
+                    <a href="#nosotros" class="text-dark hover:text-primary font-medium transition-colors">Nosotros</a>
+                    <a href="#programas" class="text-dark hover:text-primary font-medium transition-colors">Programas</a>
+                    <a href="#actividades" class="text-dark hover:text-primary font-medium transition-colors">Actividades</a>
+                    <a href="#galeria" class="text-dark hover:text-primary font-medium transition-colors">Galería</a>
+                    <a href="#contacto" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg transition-all">Contacto</a>
                 </div>
-                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=1400&h=600&fit=crop&q=80');">
-                    <div class="hero-slide-content">
-                        <h1>Ambiente Seguro y Amoroso</h1>
-                        <p>Profesionales capacitados que cuidan y estimulan a cada niño en su etapa de desarrollo</p>
-                        <a href="#contacto" class="hero-btn">Agenda una Visita</a>
-                    </div>
-                </div>
-                <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=1400&h=600&fit=crop&q=80');">
-                    <div class="hero-slide-content">
-                        <h1>Familia y Comunidad</h1>
-                        <p>Trabajamos de la mano con las familias en cada paso del desarrollo de sus hijos</p>
-                        <a href="#actividades" class="hero-btn">Nuestras Actividades</a>
-                    </div>
-                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="menuBtn" class="md:hidden p-2">
+                    <svg class="w-6 h-6 text-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
             </div>
-            <div class="hero-slider-nav">
-                <button class="slider-prev" onclick="changeSlide(-1)">&#10094;</button>
-                <div class="slider-dots">
-                    <span class="dot active" onclick="goToSlide(0)"></span>
-                    <span class="dot" onclick="goToSlide(1)"></span>
-                    <span class="dot" onclick="goToSlide(2)"></span>
-                    <span class="dot" onclick="goToSlide(3)"></span>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="md:hidden hidden pb-4">
+                <div class="flex flex-col gap-3">
+                    <a href="#inicio" class="text-dark hover:text-primary font-medium py-2">Inicio</a>
+                    <a href="#nosotros" class="text-dark hover:text-primary font-medium py-2">Nosotros</a>
+                    <a href="#programas" class="text-dark hover:text-primary font-medium py-2">Programas</a>
+                    <a href="#actividades" class="text-dark hover:text-primary font-medium py-2">Actividades</a>
+                    <a href="#galeria" class="text-dark hover:text-primary font-medium py-2">Galería</a>
+                    <a href="#contacto" class="bg-gradient-to-r from-primary to-secondary text-white px-6 py-3 rounded-full font-semibold text-center">Contacto</a>
                 </div>
-                <button class="slider-next" onclick="changeSlide(1)">&#10095;</button>
             </div>
         </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative min-h-screen gradient-hero flex items-center overflow-hidden">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="text-white fade-in">
+                    <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                        ✨ Educación de Excelencia
+                    </span>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                        Donde Cada Niño <br>
+                        <span class="text-accent">Descubre su Mundo</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-xl">
+                        Brindamos educación temprana de calidad en un ambiente seguro, cariñoso y estimulante.走廊的小朋友们在这里快乐成长。
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contacto" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-cream transition-all shadow-xl hover:shadow-2xl text-center">
+                            Agenda una Visita
+                        </a>
+                        <a href="#programas" class="border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/10 transition-all text-center">
+                            Ver Programas
+                        </a>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 mt-12 pt-8 border-t border-white/20">
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-accent">14+</div>
+                            <div class="text-white/80 text-sm mt-1">Años de Experiencia</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-accent">500+</div>
+                            <div class="text-white/80 text-sm mt-1">Familias Felices</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl md:text-4xl font-bold text-accent">98%</div>
+                            <div class="text-white/80 text-sm mt-1">Satisfacción</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative hidden lg:block">
+                    <div class="floating">
+                        <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=600&h=500&fit=crop" alt="Niños jugando" class="rounded-3xl shadow-2xl">
+                    </div>
+                    <!-- Floating Cards -->
+                    <div class="absolute -top-4 -right-4 bg-white rounded-2xl p-4 shadow-xl">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                                <span class="text-2xl">🌟</span>
+                            </div>
+                            <div>
+                                <div class="font-bold text-dark">Excelente</div>
+                                <div class="text-sm text-gray-500">Evaluación 4.9/5</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                                <span class="text-2xl">👨‍👩‍👧</span>
+                            </div>
+                            <div>
+                                <div class="font-bold text-dark">Familia</div>
+                                <div class="text-sm text-gray-500">Ambiente Seguro</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave -->
+        <svg class="wave" viewBox="0 0 1440 120" fill="none">
+            <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,90 1440,60 L1440,120 L0,120 Z" fill="#FEF9E7"/>
+        </svg>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="nosotros">
-        <h2 class="section-title">Sobre Nosotros</h2>
-        <p class="section-subtitle">Conozca nuestra filosofía educativa y lo que nos hace únicos</p>
-        <div class="about-content">
-            <div class="about-text">
-                <h3>Nuestra Filosofía</h3>
-                <p>En nuestro Jardín Infantil creemos que cada párvulo es único y merece una Educación Parvularia que respete su ritmo de desarrollo. Nuestro enfoque se basa en el respeto, la creatividad y el amor por el aprendizaje.</p>
-                <p>Trabajamos de la mano con las familias y nos alineamos a las Bases Curriculares de la Educación Parvularia (BCPE) del MINEDUC, garantizando que cada niño reciba el cuidado y la atención que merece en un ambiente donde todos pueden prosperar.</p>
-                <p>Somos parte del programa JUNJI, lo que nos permite ofrecer una educación de calidad con profesionales altamente capacitados en educación parvularia.</p>
-                <div class="about-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">🎯</div>
-                        <span>Educación Personalizada</span>
+    <section id="nosotros" class="py-20 md:py-32 bg-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">Sobre Nosotros</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">Nuestra Filosofía</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Creemos que cada niño es único y merece una educación que respete su ritmo de desarrollo.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl p-6 text-center card-hover border border-primary/10">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🎯</span>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">💚</div>
-                        <span>Ambiente Seguro</span>
+                    <h3 class="text-xl font-bold text-dark mb-2">Misión</h3>
+                    <p class="text-gray-600">Brindar educación parvularia de calidad que potencie el desarrollo integral de cada niño.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover border border-accent/20">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">👁️</span>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">🎨</div>
-                        <span>Creatividad y Arte</span>
+                    <h3 class="text-xl font-bold text-dark mb-2">Visión</h3>
+                    <p class="text-gray-600">Ser el jardín infantil de referencia en formación valórica y excelencia educativa.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover border border-warm/20">
+                    <div class="w-16 h-16 bg-warm/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">💖</span>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">👨‍👩‍👧‍👦</div>
-                        <span>Familia Participativa</span>
+                    <h3 class="text-xl font-bold text-dark mb-2">Valores</h3>
+                    <p class="text-gray-600">Respeto, amor, creatividad, responsabilidad y formación integral para cada niño.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 text-center card-hover border border-secondary/20">
+                    <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="text-3xl">🤝</span>
                     </div>
+                    <h3 class="text-xl font-bold text-dark mb-2">Compromiso</h3>
+                    <p class="text-gray-600">Trabajar en equipo con las familias para garantizar el mejor cuidado y atención.</p>
                 </div>
             </div>
-            <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=400&fit=crop&q=80" alt="Aula del jardín infantil">
+
+            <!-- Feature Image + Text -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mt-20">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&h=450&fit=crop" alt="Aula del jardín" class="rounded-3xl shadow-xl">
+                    <div class="absolute -bottom-6 -right-6 bg-primary text-white p-6 rounded-2xl shadow-xl">
+                        <div class="text-4xl font-bold">14+</div>
+                        <div class="text-sm">Años de Excelencia</div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-bold text-dark mb-6">Un Ambiente de Aprendizaje Seguro y Estimulante</h3>
+                    <p class="text-gray-600 mb-6">Nuestro espacio está diseñado para que los niños exploren, aprendan y crezcan en un ambiente lleno de colores, naturaleza y alegría. Contamos con instalaciones modernas y seguras.</p>
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">✓</span>
+                            </div>
+                            <span class="text-dark font-medium">Aulas Equipadas</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">✓</span>
+                            </div>
+                            <span class="text-dark font-medium">Patio Seguro</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">✓</span>
+                            </div>
+                            <span class="text-dark font-medium">Área Verde</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                                <span class="text-primary font-bold">✓</span>
+                            </div>
+                            <span class="text-dark font-medium">Seguridad 24/7</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Programs Section -->
-    <section class="programs" id="programas">
-        <h2 class="section-title">Nuestros Programas</h2>
-        <p class="section-subtitle">Ofrecemos diferentes niveles educativos adaptados a cada etapa del desarrollo de su hijo</p>
-        <div class="programs-grid">
-            <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&h=200&fit=crop&q=80" alt="Sala Cuna">
-                <div class="program-card-content">
-                    <h3>Sala Cuna</h3>
-                    <p>Programa para lactantes y mayores de 0 a 2 años. Cuidado cariñoso, alimentación, sueño seguro y actividades sensoriales apropiadas para su desarrollo.</p>
-                    <span class="program-tag">0 - 2 años</span>
-                </div>
+    <section id="programas" class="py-20 md:py-32 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-accent/20 text-warm px-4 py-2 rounded-full text-sm font-semibold mb-4">Nuestros Programas</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">Programas Educativos</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Ofrecemos diferentes niveles adaptados a cada etapa del desarrollo de su hijo.</p>
             </div>
-            <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&h=200&fit=crop&q=80" alt="Medio Menor">
-                <div class="program-card-content">
-                    <h3>Medio Menor</h3>
-                    <p>Para niños de 2 a 3 años. Estimulación temprana con juegos educativos, desarrollo motor y actividades creativas adaptadas a su edad.</p>
-                    <span class="program-tag">2 - 3 años</span>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Sala Cuna -->
+                <div class="bg-gradient-to-br from-pink-50 to-white rounded-3xl overflow-hidden card-hover border border-pink-100">
+                    <div class="h-48 bg-gradient-to-br from-pink-400 to-pink-300 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?w=400&h=200&fit=crop" alt="Sala Cuna" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-pink-100 text-pink-600 px-3 py-1 rounded-full text-sm font-semibold">6 meses - 2 años</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-3">Sala Cuna</h3>
+                        <p class="text-gray-600 mb-4">Cuidado cariñoso y actividades sensoriales apropiadas para su desarrollo. Estimulación temprana mediante juegos y exploración.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Estimulación sensorial</li>
+                            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Psicomotricidad</li>
+                            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Cuidado y afecto</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=400&h=200&fit=crop&q=80" alt="Medio Mayor">
-                <div class="program-card-content">
-                    <h3>Medio Mayor</h3>
-                    <p>Para niños de 3 a 4 años. Fortalecimiento del lenguaje, motricidad gruesa y fina, y socialización con sus pares.</p>
-                    <span class="program-tag">3 - 4 años</span>
+
+                <!-- Jardín Maternal -->
+                <div class="bg-gradient-to-br from-accent/10 to-white rounded-3xl overflow-hidden card-hover border border-accent/20 relative -top-4 md:-top-8">
+                    <div class="h-48 bg-gradient-to-br from-accent to-yellow-200 flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=400&h=200&fit=crop" alt="Jardín Maternal" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-accent/20 text-warm px-3 py-1 rounded-full text-sm font-semibold">2 - 3 años</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-3">Jardín Maternal</h3>
+                        <p class="text-gray-600 mb-4">Para niños de 2 a 3 años. Estimulación temprana con juegos educativos y actividades creativas que despiertan su curiosidad.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center gap-2"><span class="text-accent">✓</span> Juegos sensoriales</li>
+                            <li class="flex items-center gap-2"><span class="text-accent">✓</span> Expresión artística</li>
+                            <li class="flex items-center gap-2"><span class="text-accent">✓</span> Socialización</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400&h=200&fit=crop&q=80" alt="NT1">
-                <div class="program-card-content">
-                    <h3>NT1 - Prekinder</h3>
-                    <p>Nivel de Transición 1 para niños de 4 a 5 años. Iniciación a la lectoescritura, matemáticas iniciales y desarrollo de habilidades sociales.</p>
-                    <span class="program-tag">4 - 5 años</span>
-                </div>
-            </div>
-            <div class="program-card">
-                <img src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=400&h=200&fit=crop&q=80" alt="NT2">
-                <div class="program-card-content">
-                    <h3>NT2 - Kinder</h3>
-                    <p>Nivel de Transición 2 para niños de 5 a 6 años. Preparación integral para primero básico con enfoque en autonomía y aprendizaje significativo.</p>
-                    <span class="program-tag">5 - 6 años</span>
+
+                <!-- Preescolar -->
+                <div class="bg-gradient-to-br from-primary/10 to-white rounded-3xl overflow-hidden card-hover border border-primary/20">
+                    <div class="h-48 bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=200&fit=crop" alt="Preescolar" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-semibold">3 - 5 años</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-dark mb-3">Preescolar</h3>
+                        <p class="text-gray-600 mb-4">Para niños de 3 a 5 años. Preparación integral para la etapa escolar con enfoque en valores y habilidades sociales.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Pre-lectoescritura</li>
+                            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Matemáticas básicas</li>
+                            <li class="flex items-center gap-2"><span class="text-primary">✓</span> Habilidades sociales</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Activities Section -->
-    <section class="activities" id="actividades">
-        <h2 class="section-title">Nuestras Actividades</h2>
-        <p class="section-subtitle">Descubre las experiencias enriquecedoras que ofrecemos a nuestros pequeños</p>
-        <div class="activities-grid">
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=300&h=200&fit=crop&q=80" alt="Arte y Creatividad">
-                <div class="activity-overlay">
-                    <h4>Arte y Creatividad</h4>
-                    <p>Pintura, modelado y manualidades</p>
+    <section id="actividades" class="py-20 md:py-32 bg-gradient-to-b from-cream to-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-secondary/20 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-4">Actividades</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">Aprendizaje Divertido</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Descubre las experiencias enriching que oferecemos a nuestros pequeños.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group relative overflow-hidden rounded-2xl card-hover">
+                    <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=300&h=300&fit=crop" alt="Arte" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="text-3xl mb-2">🎨</div>
+                        <h3 class="text-xl font-bold">Arte y Creatividad</h3>
+                        <p class="text-white/80 text-sm">Pintura, modelado y manualidades</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl card-hover">
+                    <img src="https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=300&h=300&fit=crop" alt="Música" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="text-3xl mb-2">🎵</div>
+                        <h3 class="text-xl font-bold">Música y Danzas</h3>
+                        <p class="text-white/80 text-sm">Ritmo, movimiento y expresión</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl card-hover">
+                    <img src="https://images.unsplash.com/photo-1566140967404-b8b3932483f5?w=300&h=300&fit=crop" alt="Juegos" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="text-3xl mb-2">⚽</div>
+                        <h3 class="text-xl font-bold">Juegos al Aire Libre</h3>
+                        <p class="text-white/80 text-sm">Actividad física y juego libre</p>
+                    </div>
+                </div>
+                <div class="group relative overflow-hidden rounded-2xl card-hover">
+                    <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=300&h=300&fit=crop" alt="Ciencia" class="w-full h-64 object-cover transition-transform group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+                        <div class="text-3xl mb-2">🔬</div>
+                        <h3 class="text-xl font-bold">Ciencia para Pequeños</h3>
+                        <p class="text-white/80 text-sm">Experimentos y descubrimiento</p>
+                    </div>
                 </div>
             </div>
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?w=300&h=200&fit=crop&q=80" alt="Música y Danzas">
-                <div class="activity-overlay">
-                    <h4>Música y Danzas</h4>
-                    <p>Ritmo, movimiento y expresión</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="py-20 md:py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-soft text-pink-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">Galería</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">Nuestro Espacio</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Conoce nuestras instalaciones diseñadas para el aprendizaje y juego.</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1587620962725-abab7fe55159?w=600&h=600&fit=crop" alt="Galería 1" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="rounded-2xl overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=300&h=300&fit=crop" alt="Galería 2" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="rounded-2xl overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1576349353336-1b8bf874a389?w=300&h=300&fit=crop" alt="Galería 3" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="rounded-2xl overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1596464716127-f2a82984de30?w=300&h=300&fit=crop" alt="Galería 4" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                </div>
+                <div class="rounded-2xl overflow-hidden card-hover">
+                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=300&h=300&fit=crop" alt="Galería 5" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                 </div>
             </div>
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1476231682828-37e571bc172f?w=300&h=200&fit=crop&q=80" alt="Juegos al Aire Libre">
-                <div class="activity-overlay">
-                    <h4>Juegos al Aire Libre</h4>
-                    <p>Actividad física y juego libre</p>
-                </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 md:py-32 bg-gradient-to-br from-primary to-secondary relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-white/20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Testimonios</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">Lo Que Dicen las Familias</h2>
             </div>
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?w=300&h=200&fit=crop&q=80" alt="Psicomotricidad">
-                <div class="activity-overlay">
-                    <h4>Psicomotricidad</h4>
-                    <p>Desarrollo motor integral</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-accent text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-white/90 mb-6">"El mejor jardín infantil. Mis hijos aman venir aquí y yo estoy tranquila sabiendo que están en las mejores manos."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-accent/30 rounded-full flex items-center justify-center text-white font-bold">MG</div>
+                        <div>
+                            <div class="font-bold text-white">María González</div>
+                            <div class="text-white/70 text-sm">Madre de 2 niños</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=300&h=200&fit=crop&q=80" alt="Huerto y Naturaleza">
-                <div class="activity-overlay">
-                    <h4>Huerto y Naturaleza</h4>
-                    <p>Contacto con la naturaleza</p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-accent text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-white/90 mb-6">"Profesionales increíbles y un ambiente hermoso. Mi hijo ha aprendido tanto y hecho amigos para toda la vida."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-accent/30 rounded-full flex items-center justify-center text-white font-bold">CR</div>
+                        <div>
+                            <div class="font-bold text-white">Carlos Rodríguez</div>
+                            <div class="text-white/70 text-sm">Padre de 1 niño</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=200&fit=crop&q=80" alt="Cuentos y Teatro">
-                <div class="activity-overlay">
-                    <h4>Cuentos y Teatro</h4>
-                    <p>Desarrollo del lenguaje</p>
-                </div>
-            </div>
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=200&fit=crop&q=80" alt="Juegos Tradicionales">
-                <div class="activity-overlay">
-                    <h4>Juegos Tradicionales</h4>
-                    <p>Cultura y tradiciones chilenas</p>
-                </div>
-            </div>
-            <div class="activity-item">
-                <img src="https://images.unsplash.com/photo-1544776193-352d25ca82cd?w=300&h=200&fit=crop&q=80" alt="Educación Emocional">
-                <div class="activity-overlay">
-                    <h4>Educación Emocional</h4>
-                    <p>Gestión de emociones</p>
+                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+                    <div class="flex items-center gap-1 mb-4">
+                        <span class="text-accent text-xl">★★★★★</span>
+                    </div>
+                    <p class="text-white/90 mb-6">"La transformación que he visto en mi hija ha sido increíble. Altamente recomendado para todas las familias."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 bg-accent/30 rounded-full flex items-center justify-center text-white font-bold">AL</div>
+                        <div>
+                            <div class="font-bold text-white">Ana López</div>
+                            <div class="text-white/70 text-sm">Madre de 1 niña</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contacto">
-        <h2 class="section-title">Contáctanos</h2>
-        <p class="section-subtitle">Estamos aquí para responder sus preguntas y agendar una visita</p>
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3>Información de Contacto</h3>
-                <p><span class="contact-icon">📍</span> Avenida Providencia 1234, Providencia, Santiago</p>
-                <p><span class="contact-icon">📞</span> +56 2 2345 6789</p>
-                <p><span class="contact-icon">✉️</span> contacto@jardininfantil.cl</p>
-                <p><span class="contact-icon">🕐</span> Lunes a Viernes: 7:30 - 18:00</p>
-                <p><span class="contact-icon">📅</span> Sábados: 8:00 - 13:00</p>
+    <section id="contacto" class="py-20 md:py-32 bg-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="inline-block bg-warm/20 text-warm px-4 py-2 rounded-full text-sm font-semibold mb-4">Contacto</span>
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-4">Estamos Aquí para Ayudarte</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Contáctanos para agendar una visita o resolver cualquier consulta.</p>
             </div>
-            <div class="contact-form">
-                <h3>Envíanos un Mensaje</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="nombre">Nombre Completo</label>
-                        <input type="text" id="nombre" name="nombre" required>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <div class="bg-white rounded-2xl p-6 flex items-center gap-4 card-hover border border-gray-100">
+                        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
+                            <span class="text-2xl">📍</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-lg">Dirección</h3>
+                            <p class="text-gray-600">Calle Principal 123, Ciudad, Chile</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico</label>
-                        <input type="email" id="email" name="email" required>
+                    <div class="bg-white rounded-2xl p-6 flex items-center gap-4 card-hover border border-gray-100">
+                        <div class="w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center">
+                            <span class="text-2xl">📞</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-lg">Teléfono</h3>
+                            <p class="text-gray-600">+56 9 1234 5678</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="telefono">Teléfono</label>
-                        <input type="tel" id="telefono" name="telefono">
+                    <div class="bg-white rounded-2xl p-6 flex items-center gap-4 card-hover border border-gray-100">
+                        <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center">
+                            <span class="text-2xl">✉️</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-lg">Email</h3>
+                            <p class="text-gray-600">contacto@jardininfantil.cl</p>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="mensaje">Mensaje</label>
-                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    <div class="bg-white rounded-2xl p-6 flex items-center gap-4 card-hover border border-gray-100">
+                        <div class="w-14 h-14 bg-secondary/10 rounded-2xl flex items-center justify-center">
+                            <span class="text-2xl">🕐</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-dark text-lg">Horario</h3>
+                            <p class="text-gray-600">Lunes a Viernes: 7:30 - 18:00</p>
+                            <p class="text-gray-600">Sábados: 8:00 - 13:00</p>
+                        </div>
                     </div>
-                    <button type="submit" class="submit-btn">Enviar Mensaje</button>
-                </form>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+                    <h3 class="text-2xl font-bold text-dark mb-6">Envíanos un Mensaje</h3>
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label class="block text-dark font-medium mb-2">Nombre Completo</label>
+                            <input type="text" name="nombre" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="Tu nombre">
+                        </div>
+                        <div>
+                            <label class="block text-dark font-medium mb-2">Correo Electrónico</label>
+                            <input type="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="tu@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-dark font-medium mb-2">Teléfono</label>
+                            <input type="tel" name="telefono" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all" placeholder="+56 9 1234 5678">
+                        </div>
+                        <div>
+                            <label class="block text-dark font-medium mb-2">Mensaje</label>
+                            <textarea name="mensaje" rows="4" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none" placeholder="¿En qué podemos ayudarte?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary text-white py-4 rounded-xl font-bold text-lg hover:shadow-lg transition-all">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-warm to-accent">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4">¿Listo para dar el primer paso?</h2>
+            <p class="text-white/90 mb-8">Agenda una visita y conoce nuestro jardín infantil. Estamos aquí para responder todas tus preguntas.</p>
+            <a href="#contacto" class="inline-block bg-white text-warm px-8 py-4 rounded-full font-bold text-lg hover:bg-cream transition-all shadow-xl">
+                Agenda tu Visita Hoy
+            </a>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-about">
-                <h4>Jardín Infantil</h4>
-                <p>Brindamos Educación Parvularia de calidad desde2010. Nuestro compromiso es con el desarrollo integral de cada niño, en un ambiente seguro, cariñoso y estimulante. Trabajamos bajo las Bases Curriculares de la Educación Parvularia del MINEDUC.</p>
-                <div class="social-links">
-                    <a href="#" aria-label="Facebook">f</a>
-                    <a href="#" aria-label="Instagram">📷</a>
-                    <a href="#" aria-label="Twitter">🐦</a>
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center">
+                            <span class="text-white text-xl">🌱</span>
+                        </div>
+                        <span class="text-xl font-bold">Jardín Infantil</span>
+                    </div>
+                    <p class="text-gray-400 text-sm">Brindamos educación temprana de calidad desde 2010. Nuestro compromiso es con el desarrollo integral de cada niño.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Enlaces</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#inicio" class="hover:text-white transition-colors">Inicio</a></li>
+                        <li><a href="#nosotros" class="hover:text-white transition-colors">Nosotros</a></li>
+                        <li><a href="#programas" class="hover:text-white transition-colors">Programas</a></li>
+                        <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Programas</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#programas" class="hover:text-white transition-colors">Sala Cuna</a></li>
+                        <li><a href="#programas" class="hover:text-white transition-colors">Jardín Maternal</a></li>
+                        <li><a href="#programas" class="hover:text-white transition-colors">Preescolar</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contacto</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li>+56 9 1234 5678</li>
+                        <li>contacto@jardininfantil.cl</li>
+                        <li>Lun-Vie: 7:30 - 18:00</li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-links">
-                <h4>Enlaces Rápidos</h4>
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#nosotros">Nosotros</a></li>
-                    <li><a href="#programas">Programas</a></li>
-                    <li><a href="#actividades">Actividades</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                </ul>
+            <div class="border-t border-gray-700 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 Jardín Infantil. Todos los derechos reservados.</p>
             </div>
-            <div class="footer-links">
-                <h4>Programas</h4>
-                <ul>
-                    <li><a href="#programas">Sala Cuna</a></li>
-                    <li><a href="#programas">Medio Menor</a></li>
-                    <li><a href="#programas">Medio Mayor</a></li>
-                    <li><a href="#programas">NT1 - Prekinder</a></li>
-                    <li><a href="#programas">NT2 - Kinder</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Términos de Uso</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Reglamento Interno</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>2024 Jardín Infantil. Todos los derechos reservados.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
         // Mobile menu toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
+                mobileMenu.classList.add('hidden');
             });
         });
 
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Gracias por su mensaje. Nos pondremos en contacto con usted pronto.');
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
             this.reset();
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Hero Slider
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.hero-slide');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = slides.length;
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        function showSlide(index) {
-            if (index >= totalSlides) currentSlide = 0;
-            if (index < 0) currentSlide = totalSlides - 1;
-
-            slides.forEach((slide, i) => {
-                slide.classList.remove('active');
-                dots[i].classList.remove('active');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
             });
+        }, observerOptions);
 
-            slides[currentSlide].classList.add('active');
-            dots[currentSlide].classList.add('active');
-        }
-
-        function changeSlide(direction) {
-            currentSlide += direction;
-            showSlide(currentSlide);
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            showSlide(currentSlide);
-        }
-
-        // Auto-advance slider every 5 seconds
-        setInterval(() => {
-            currentSlide++;
-            showSlide(currentSlide);
-        }, 5000);
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
